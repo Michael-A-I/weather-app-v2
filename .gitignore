@@ -1,0 +1,3 @@
+# ignores all files w/ git in file. 
+.env
+node_modules
