@@ -23,10 +23,7 @@ const indexRouter = require('./routes/index')
 
 
 const mongoose = require('mongoose');
-mongoose.connect(process.env.DATABASE_URL,{
-    useNewUrlParser:true,
-    useUnifiedTopology: true
-});
+mongoose.connect(process.env.DATABASE_URL,{useNewUrlParser:true,useUnifiedTopology: true});
 const db = mongoose.connection
 
 db.on('error', error => console.log("error"))
@@ -52,9 +49,11 @@ app.set('layout','layouts/layout');
 
 // use express layouts
 app.use(expressLayouts)
+
+
+// static files hosted in public folder.
 // where are public files i.e javascript css etc. 
 app.use(express.static("public"))
-
 
 
 
