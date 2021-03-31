@@ -20,6 +20,8 @@ const cities = []
 
 let input = document.querySelector("#w-location")
 
+const cityUL = document.querySelector(".city-list")
+
 
 // const cityListItem = document.querySelector(".city-list-item")
 
@@ -35,12 +37,31 @@ fetch("./city.list.json")
 
 
 // TODO: hook regex function to above data 1. display potential list of data 2.apon selection enter into api and do a call.
+function dataGetter(endpoint){
 
 
-fetch(endpoint)
-  .then(data => data.json())
+  fetch(endpoint)
+    .then(data => data.json())
+    .then(data => console.log(data))
+}
+
 
 //TODO: fetch weather data for selected city with this dynamically 1. display data selected. 
+
+
+
+input.addEventListener("keyup", inputMatches)
+
+
+function inputMatches() {
+  
+  const cityUl = document.querySelector(".city-list")
+  
+  removeAllChildNodes(cityUl);
+  findMatches(input.value, cities)
+  
+  
+}
 
 
 // RegExp
@@ -56,7 +77,7 @@ function findMatches(wordToMatch, cities) {
     const cityUl = document.querySelector(".city-list")
 
     places.forEach(function(place, index) {
-      if(place === ""){
+      if(place ===""|| place === null || place ===" "){
         return;
       }
 
@@ -71,22 +92,11 @@ function findMatches(wordToMatch, cities) {
     console.log(matchesFound);
     // display list of elements in dom
     displayList(cityUl,matchesFound);
-   
     
-
+    
+    
   })
-
-}
-
-input.addEventListener("keyup", inputMatches)
-
-
-function inputMatches() {
-  // console.log(input.value)
-  // console.log(cities)
-  findMatches(input.value, cities)
-  // console.log(place)
-
+  
 }
 
 
@@ -96,32 +106,46 @@ function displayList(domElement,matchesFound){
   // take in data within execution context 
   // dropdown menu
   // loop through data and append data to dom list. 
+
+// clear list first, then repopulate. 
+
+
+
   matchesFound.forEach(element => {
     console.log(element.name);
 
   let li = document.createElement("li");
+  let a =   document.createElement("a");
   // set id of html element to object id in JSON file
   li.setAttribute('id',element.id);
-  li.appendChild(document.createTextNode(`${element.name},${element.state || element.country}`));
+  li.setAttribute('class',"city-list-item");
+  a.textContent = `${element.name},${element.state || element.country}`;
+  a.setAttribute('href',`#`);
+  li.appendChild(a);
   domElement.appendChild(li);
   });
 
 
 }
 
+
+function removeAllChildNodes(parent) {
+  while (parent.firstChild) {
+      parent.removeChild(parent.firstChild);
+  }
+}
+
+// on click return api of data. 
+cityUL.addEventListener('click', function(e){
+  e.preventDefault();
+  let targetId = e.explicitOriginalTarget.parentNode.id;
+  let apiCallId = `http://api.openweathermap.org/data/2.5/forecast?id=${targetId}&appid=${apiKey}`
   
+  console.log(apiCallId)
+
+  dataGetter(apiCallId);
+
+})
 
 
-
-
-
-
-//look through list of cities in the city.list.json file
-
-// once user selects city in gui
-// create function that will take search data and place it in the gui. as a link 4 api call. 
-
-// api call for data regarding city selected
-
-// display data onto webpage. 
-
+// TODO: add event listner on parent to lists > on click api call on ID and display data
