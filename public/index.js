@@ -40,9 +40,9 @@ fetch("./city.list.json")
 function dataGetter(endpoint){
 
 
-  fetch(endpoint)
+ fetch(endpoint)
     .then(data => data.json())
-    .then(data => console.log(data))
+    .then(data => htmlfunction(data))
 }
 
 
@@ -139,13 +139,24 @@ function removeAllChildNodes(parent) {
 cityUL.addEventListener('click', function(e){
   e.preventDefault();
   let targetId = e.explicitOriginalTarget.parentNode.id;
-  let apiCallId = `http://api.openweathermap.org/data/2.5/forecast?id=${targetId}&appid=${apiKey}`
+  let apiCallId = `http://api.openweathermap.org/data/2.5/weather?id=${targetId}&appid=${apiKey}`
   
   console.log(apiCallId)
-
-  dataGetter(apiCallId);
+  
+   dataGetter(apiCallId);
+  
+  
 
 })
 
 
+function htmlfunction(data){
+  const temp = document.querySelector('#temp')
+  const location = document.querySelector("#location")
+  const description = document.querySelector("#description")
+
+  temp.innerHTML = data.main.temp
+  location.innerHTML = data.name
+  description.innerHTML = data.weather[0].description
+}
 // TODO: add event listner on parent to lists > on click api call on ID and display data
