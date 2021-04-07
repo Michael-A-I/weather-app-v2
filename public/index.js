@@ -54,12 +54,14 @@ input.addEventListener("keyup", inputMatches)
 
 
 function inputMatches() {
-  
   const cityUl = document.querySelector(".city-list")
-  
   removeAllChildNodes(cityUl);
-  findMatches(input.value, cities)
   
+  // check if input has atleast 3 characters inside before search for speed. 
+  if(input.value.split('').length > 2){
+  // find list of matches in json based on input
+    findMatches(input.value, cities)
+}
   
 }
 
@@ -110,9 +112,8 @@ function displayList(domElement,matchesFound){
 // clear list first, then repopulate. 
 
 
-
   matchesFound.forEach(element => {
-    console.log(element.name);
+    // console.log(element.name);
 
   let li = document.createElement("li");
   let a =   document.createElement("a");
@@ -135,13 +136,14 @@ function removeAllChildNodes(parent) {
   }
 }
 
+//Links data
 // on click return api of data. 
 cityUL.addEventListener('click', function(e){
   e.preventDefault();
   let targetId = e.explicitOriginalTarget.parentNode.id;
   let apiCallId = `http://api.openweathermap.org/data/2.5/weather?id=${targetId}&appid=${apiKey}`
   
-  console.log(apiCallId)
+  // console.log(apiCallId)
   
    dataGetter(apiCallId);
   
@@ -149,7 +151,7 @@ cityUL.addEventListener('click', function(e){
 
 })
 
-
+// After click, add data to webpage
 function htmlfunction(data){
   const temp = document.querySelector('#temp')
   const location = document.querySelector("#location")
@@ -160,3 +162,4 @@ function htmlfunction(data){
   description.innerHTML = data.weather[0].description
 }
 // TODO: add event listner on parent to lists > on click api call on ID and display data
+
