@@ -20,8 +20,7 @@ const cities = []
 
 let input = document.querySelector("#w-location")
 
-const cityUL = document.querySelector(".city-list")
-
+const cityUL  = document.querySelector(".city-list")
 
 // const cityListItem = document.querySelector(".city-list-item")
 
@@ -156,10 +155,24 @@ function htmlfunction(data){
   const temp = document.querySelector('#temp')
   const location = document.querySelector("#location")
   const description = document.querySelector("#description")
+  const icon    = document.querySelector('#icon')
 
-  temp.innerHTML = data.main.temp
-  location.innerHTML = data.name
-  description.innerHTML = data.weather[0].description
+  const weatherData = data.weather[0].description
+  const iconData        = data.weather[0].icon
+  
+  temp.innerHTML         = data.main.temp;
+  location.innerHTML     = data.name;
+  description.innerHTML  = weatherData;
+
+  if(iconData){
+    let source = `/animated/${iconData}.svg`
+    console.log(iconData)
+
+    icon.src = source
+  }
+
+
+
 }
 // TODO: add event listner on parent to lists > on click api call on ID and display data
 

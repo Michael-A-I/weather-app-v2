@@ -71,4 +71,4 @@ app.use('/', indexRouter)
 
 
 //server starts on 3000
-app.listen(process.env.PORT||3000)
+app.listen(process.env.PORT || 7777 ||3000)
