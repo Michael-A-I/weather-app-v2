@@ -12,9 +12,6 @@
 
 const apiKey = "c144deeef83c9fc568b52b95903fb474";
 
-const apiCall = "api.openweathermap.org/data/2.5/weather?q={city name},{state code},{country code}&appid={API key}"
-
-const endpoint = "http://api.openweathermap.org/data/2.5/weather?q=London,uk&appid=c144deeef83c9fc568b52b95903fb474"
 
 const cities = []
 
@@ -25,7 +22,7 @@ const cityUL  = document.querySelector(".city-list")
 // const cityListItem = document.querySelector(".city-list-item")
 
 // fetch list of cities to regex through and enter into API call. 
-fetch("./city.list.json")
+fetch("./js/city.list.json")
   .then(response => {
     if (!response.ok) {
       throw new Error("http error" + response.status)
@@ -54,6 +51,7 @@ input.addEventListener("keyup", inputMatches)
 
 function inputMatches() {
   const cityUl = document.querySelector(".city-list")
+  removeWeatherData();
   removeAllChildNodes(cityUl);
   
   // check if input has atleast 3 characters inside before search for speed. 
@@ -119,8 +117,10 @@ function displayList(domElement,matchesFound){
   // set id of html element to object id in JSON file
   li.setAttribute('id',element.id);
   li.setAttribute('class',"city-list-item");
-  a.textContent = `${element.name},${element.state || element.country}`;
+  // li.setAttribute('class','');
+  a.textContent = `${element.name}, ${element.state || element.country}`;
   a.setAttribute('href',`#`);
+  a.setAttribute('class','link-style')
   li.appendChild(a);
   domElement.appendChild(li);
   });
@@ -143,9 +143,10 @@ cityUL.addEventListener('click', function(e){
   let apiCallId = `http://api.openweathermap.org/data/2.5/weather?id=${targetId}&appid=${apiKey}`
   
   // console.log(apiCallId)
-  
+
+  removeAllChildNodes(cityUL)
    dataGetter(apiCallId);
-  
+  showWeatherData();
   
 
 })
@@ -160,13 +161,13 @@ function htmlfunction(data){
   const weatherData = data.weather[0].description
   const iconData        = data.weather[0].icon
   
-  temp.innerHTML         = data.main.temp;
+  temp.innerHTML         = `${Math.round((data.main.temp-273) * 9/5 +32)} f`;
   location.innerHTML     = data.name;
   description.innerHTML  = weatherData;
 
   if(iconData){
     let source = `/animated/${iconData}.svg`
-    console.log(iconData)
+    console.log(icon)
 
     icon.src = source
   }
@@ -176,3 +177,15 @@ function htmlfunction(data){
 }
 // TODO: add event listner on parent to lists > on click api call on ID and display data
 
+
+// function that removes weather data
+function removeWeatherData(){
+  let weatherData = document.querySelector('#weather-data-display')
+  weatherData.setAttribute('class',"hide-data")
+}
+
+function showWeatherData(){
+  let weatherData = document.querySelector('#weather-data-display')
+  weatherData.setAttribute('class',"card special-card")
+
+}

@@ -1,0 +1,57 @@
+body,html{
+    background:purple;
+    /* position: absolute; */
+    height:100%
+    border: 2px solid blue;
+}
+
+.drop-down{
+   background:transparent
+   /* position: absolute; */
+
+   
+}
+
+
+.outline{
+    border: 2px solid orange
+}
+
+
+.city-list{
+    list-style-type : none;
+    padding-right   :  185px;
+    
+}
+.city-list-item a:link{
+    background-color: #f44336;
+    color: white;
+    padding: 15px 25px;
+    margin: 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.city-list-item a:hover, a:active {
+    background-color:aliceblue;
+  }
+
+.link-style{
+    color:white;
+}
+
+.hide-data{
+    display: none;
+}
+
+.icon-sizing{    
+   width: 50%;
+   /* position: absolute */
+   margin:-350px -350px 28px 350px;
+}
+
+.special-card{
+    background-color:transparent;
+    
+}

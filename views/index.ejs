@@ -1,29 +1,40 @@
-  <div>
-    <h1 for="w-location">Location</label>
-      <input type="text" id='w-location' name="w-location"><br><br>
+
+<div class="container h-100 outline">
+  <div class="d-flex align-items-center flex-column justify-content-center h-100 text-white">
+    <div class="">
+      <h1 for="w-location">Location</label>
+        <input type="text" id='w-location' name="w-location"><br><br>
+    </div>
+
+    <!-- <div class="outline">
+      <ul>
+        <li>item 1</li>
+      </ul>
+    </div> -->
+    <div class="card text-white mb-3 drop-down outline">
+      <ul class="city-list ">
+      </ul>    
+    </div> 
   </div>
-
-
-
-<ul class="city-list">
-  <li class="city-list-item">
-
-  </li>
-</ul>
-
-
-<div>
-  <h1>Weather Data</h1>
-  <br>
-  <h2>Location</h2>
-  <p id='location'></p>
-  <h2>Temp</h2>
-  <p id="temp"></p>
-  <h2>Description</h2>
-  <p id ="description"></p>
-
-<div>
-  <img id="icon" src="" width="250" length="200" alt="">
-</div>
-
+     
+  
+  
+  
+  <div id='weather-data-display' class="weather-data--card hide-data">
+    <div class="card-body show-card-text">
+      
+      <h1 class="card-title">Weather Data</h1>
+      <br>
+      <h4 class="card-subtitle  mb-2 text-muted">Location</h2>
+      <h6 id='location' class="card-text"></p>
+      <h4 class="card-subtitle  mb-2 text-muted">Temp</h2>
+      <h6 id="temp" class="card-text"></p>
+      <h4 class="card-subtitle  mb-2 text-muted">Description</h2>
+      <h6 id ="description" class="card-text"></p>
+      
+        <img class="card-img-top icon-sizing" id="icon" src="" width="250" length="200" alt="">
+      
+      
+    </div>
+  </div>
 </div>
