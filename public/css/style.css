@@ -1,8 +1,8 @@
 body,html{
-    background:purple;
+    /* background-image:url('../image/pexels-jakub-novacek-924824.jpg'); */
     /* position: absolute; */
     height:100%
-    border: 2px solid blue;
+    /* border: 2px solid blue; */
 }
 
 .drop-down{
@@ -13,15 +13,15 @@ body,html{
 }
 
 
-.outline{
+/* .outline{
     border: 2px solid orange
-}
+} */
 
 
 .city-list{
     list-style-type : none;
     padding-right   :  185px;
-    
+    z-index:1;
 }
 .city-list-item a:link{
     background-color: #f44336;

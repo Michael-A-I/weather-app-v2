@@ -171,8 +171,8 @@ function htmlfunction(data){
 
     icon.src = source
   }
-
-
+// reset view to the top of page where data is located.
+  window.scrollTo(0,0); 
 
 }
 // TODO: add event listner on parent to lists > on click api call on ID and display data
